@@ -19,10 +19,12 @@ sequenceDiagram
     server-->>browser: the JavaScript file
     deactivate server
 
+    Note right of browser: The browser executes the js file.
+
     browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
     activate server
     server-->>browser: [{ "content": "HTML is easy", "date": "2023-1-1" }, ... ]
     deactivate server
 
-    Note right of browser: For the first time, browser executes callback onreadystatechange, then call redraw function that updates the DOM, But from now on the browser relies on this data to update the DOM 
+    Note right of browser: After receiving data, for the first time browser executes the callback onreadystatechange, then call redraw function that updates the DOM, But from now on the browser relies on this data to update the DOM 
     Note right of browser: The browser gets th data from the server only once and after it cannot reload to get the new data, it stands on the same page, the is where we call the single page. 
