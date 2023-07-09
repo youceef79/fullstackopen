@@ -1,0 +1,28 @@
+sequenceDiagram
+    participant browser
+    participant server
+
+    Note right of browser: The principe of spa pages is to instead of waiting the changes from the server, the client updates its state and then notifies server the changes made 
+    
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/spa
+    activate server
+    server-->>browser: HTML document
+    deactivate server
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
+    activate server
+    server-->>browser: the css file
+    deactivate server
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/spa.js
+    activate server
+    server-->>browser: the JavaScript file
+    deactivate server
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
+    activate server
+    server-->>browser: [{ "content": "HTML is easy", "date": "2023-1-1" }, ... ]
+    deactivate server
+
+    Note right of browser: For the first time, browser executes callback onreadystatechange, then call redraw function that updates the DOM, But from now on the browser relies on this data to update the DOM 
+    Note right of browser: The browser gets th data from the server only once and after it cannot reload to get the new data, it stands on the same page, the is where we call the single page. 
