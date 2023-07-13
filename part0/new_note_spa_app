@@ -1,0 +1,12 @@
+sequenceDiagram
+    participant browser
+    participant server
+ 
+    
+    browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+    activate server
+    server-->>browser: 201 status (note created)
+    deactivate server
+
+    Note right of browser: In this case the form submitted doesn't have an action attribute, instead the script handle the action (so that could prevent reloading page) by updating the DOM and sending the data to the server   
+
